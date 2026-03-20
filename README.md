@@ -1,6 +1,9 @@
 # Nano Banana Technologies - Landing Page
 
-**Muhammad Haris Khan** **23I-5558** **Semester 6** **Webprogramming fOR BUSINESS**
+**Muhammad Haris Khan** 
+**23I-5558** 
+**Semester 6** 
+**Webprogramming fOR BUSINESS**
 
 ---
 
