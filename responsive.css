@@ -1,0 +1,225 @@
+/*  Muhammad Haris Khan
+    Roll no: 23I-5558
+    Section: BFT-6B
+    Assignment: 1
+*/
+
+
+/* 5.0 Phase 7: Responsive Desing aur Mobile Clapse
+   Wirefrane Refernce: Wirefrane desktop viewport k leay bnaya gya tha.
+   Yeah media queries gird layout ko progressivly choti screens k leay adpat krti hain.
+
+   Requirement Checklisr:
+   [x] Multiple breakpoitns tablet (991px) / mobile (767px) / small (480px) k leay.
+   [x] MOBILE COLLAPSE (<=480px): Gird collapse ho kr single-column vertical stack ban jaye ga.
+       Saari asymmetrical spanning, overlaplayering z-index layers, aur diagonal 
+       clip-paths ko wirefrane sy neutralize krna hai taky clean stacking ho.
+*/
+
+
+/* 5.1 Tablet Breakpoitn — max-width: 991px
+   Wirefrane Refernce: Desktop view ka chota version. Main structural gird areas 
+   same rhengy; bs spacing aur font sizes thory kam kr diye hain.
+*/
+@media screen and (max-width: 991px) {
+
+    /* Main nestd gird mein row gap kam kiya hai */
+    main.main-content {
+        row-gap: 32px;
+    }
+
+    /* Hero tagline ka font size thora chota kiya hai */
+    .hero-tagline {
+        font-size: 44.8px;
+    }
+
+    /* Feature cards k darmiyan gap thora tight kr diya */
+    .feature-grid {
+        gap: 16px;
+    }
+
+    /* Tablet viewport k leay card padding kam ki hai */
+    .feature-card {
+        padding: 24px;
+    }
+
+    .feature-card h3 {
+        font-size: 22.4px;
+    }
+
+    /* Stat counters ko tablet pr two rows mein wrap hony diya hai */
+    .stats-section {
+        flex-wrap: wrap;
+    }
+
+    /* Har stat counter tablet pr takreeban half row width ly ga */
+    .stat-counter {
+        flex: 0 0 45%;
+    }
+}
+
+
+/* 5.2 Mobile Breakpoitn — max-width: 767px
+   Wirefrane Refernce: Stacked single-column ki approxmiation.
+   Hero section flip ho kr column-reverse ban jaye gi (illustration oper text neechy), 
+   stat counters full-width stack hon gy, form rows vertical ho jayen gi.
+*/
+@media screen and (max-width: 767px) {
+
+    /* Hero: illustration ko text k oper stack kiya aur content center kr diya */
+    .hero-section {
+        flex-direction: column-reverse;
+        padding: 64px 32px 160px 32px;
+        text-align: center;
+    }
+
+    /* Stack hony pr hero text full width expand ho jaye ga */
+    .hero-text {
+        max-width: 100%;
+        margin-top: 32px;
+    }
+
+    /* Choti screens k leay tagline font kam kiya */
+    .hero-tagline {
+        font-size: 40px;
+    }
+
+    /* Stat counters: flex maintain rakha hai pr center kr diya */
+    .stats-section {
+        justify-content: center;
+    }
+
+    /* Har stat counter mobile pr full width span kry ga */
+    .stat-counter {
+        flex: 0 0 100%;
+    }
+
+    /* Wirefrane form rows collapse: side-by-side flex sy vertical stack ho gya */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Form buttons stack ho jayen gy (Reset oper, Submit neechy) */
+    .form-buttons {
+        flex-direction: column-reverse;
+    }
+
+    /* Footer: contact info aur copyright ko vertically stack kr diya */
+    .footer-content {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+}
+
+
+/* 5.3 CRITICAl — Small Mobile Clapse — max-width: 480px
+   Wirefrane Refernce: Wirefrane ka sara gird structure hata diya gya hai.
+   Site ab simple top-to-bottom documnet flow (display: block) ban jaye gi.
+
+   Kya kya neutralize kiya hai:
+   • Outer site-wrappr gird -> display: block (no more 4-column layout)
+   • Inner main-contetn gird -> display: block
+   • feature-gird overlap layout -> display: block (z-index overlap khatam)
+   • clip-path slantd edges hero aur foter pr -> removed (clip-path: none)
+   • gird-column / gird-row spans sary sections pr -> unset
+   • z-index layering feature cards ki -> reset to z-index: 1 for all cards
+   • transform animatoins cards pr -> disable kr di performance k leay
+*/
+@media screen and (max-width: 480px) {
+
+    /* 1. Outer page gird disable kr di — ab sab block elements ki trah flow kry ga */
+    .site-wrapper {
+        display: block;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Inner main-content gird bhi disable */
+    main.main-content {
+        display: block;
+    }
+
+    /* 2. Wirefrane diagonal shapes remove kr di hain clean mobile rendering k leay */
+
+    /* Hero: slanted bottom clip-path (wirefrane diagonal line) remove kr di */
+    .hero-section {
+        clip-path: none;
+        padding-bottom: 80px;
+        background-color: #FEE000;
+    }
+
+    /* Foter: angled top clip-path remove kr di */
+    .main-footer {
+        clip-path: none;
+        padding-top: 80px;
+    }
+
+    /* 3. Sary section gird positioning reset — ab yeah full-width blocks hain */
+    .main-header,
+    .features-section,
+    .form-section,
+    .main-footer {
+        display: block;
+        width: 100%;
+        grid-area: unset;    /* Named area placemnet khatam */
+        grid-column: unset;  /* Column-span shorthand khatam */
+    }
+
+    /* Nav vertical list ban jaye gi, center align */
+    .main-nav .nav-list {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    /* Animarted bot illustration ko scale down kiya */
+    .hero-illustration {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* 4. NEUTRALIZE FEATURE GIRD OVERLAP (wirefrane overlap zone removed)
+          Hatchd overlap area wirefrane sy bilkul hata diya gya hai.
+          Sary cards vertically stack hon gy bina kisi z-index layering k. */
+    .feature-grid {
+        display: block; /* 4-column nestd overlap gird disable */
+        gap: 24px;
+    }
+
+    .feature-card {
+        display: block;
+        width: 100%;
+        margin-bottom: 24px;
+
+        /* Wirefrane gird-column / gird-row rules unset kr diye hain */
+        grid-column: unset !important;
+        grid-row: unset !important;
+
+        /* Z-index re-level: overlap jaan boojh kr mobile pr khatam kiya hai */
+        z-index: 1 !important;
+
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+
+        /* Hover transforn disable taky stacked cards stable rhen */
+        transform: none !important;
+    }
+
+    /* Jab cards stack hon (no overlap) to background colors sahi restore hon gy */
+    .feature-card-large {
+        background-color: #00E5FF !important; /* Wirefrane: large card = cyan */
+    }
+
+    .feature-card-small {
+        background-color: #FFFFFF !important; /* Wirefrane: small cards = white */
+    }
+
+    /* Form: choty mobile pr full viewport width tak expand kry ga */
+    .form-section {
+        max-width: 100%;
+        margin: 0 0 32px 0;
+        padding: 32px 24px;
+    }
+}

@@ -1,0 +1,590 @@
+/*  Muhammad Haris Khan
+    Roll no: 23I-5558
+    Section: BFT-6B
+    Assignment: 1
+*/
+
+
+
+/* Global Reser & Base Styels 
+   Yeahan basic reset kr rhy hain taky margin padding zero rahy.
+*/
+* {
+    box-sizing: border-box;
+}
+
+/* Sab elements k leay same font aur styling rakhi hai */
+body, h1, h2, h3, h4, p, ul, select, input, textarea, button {
+    margin: 0;
+    padding: 0;
+    font-family: 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #2D3436;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #2D3436;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+    color: #004D40;
+}
+
+
+/* 1.0 Site Wrappr — Outer Page Gird
+   site wrapper hamari main gird hai as per the wireframe full page.
+   yeah basically divide kr rhi hai page ko into 6 rows as:  
+   header, hero, features, stats, form, footer.
+   posiotioning method yeahan gird-template-areas hai.
+*/
+.site-wrapper {
+    display: grid;
+
+    /* 4x6 gird ka page layout bnaya hai as per wirefrane */
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-areas:
+        "header   header   header   header"
+        "hero     hero     hero     hero"
+        "features features features features"
+        "stats    stats    stats    stats"
+        "form     form     form     form"
+        "footer   footer   footer   footer";
+    row-gap: 30px; /* wirefrane k mutabiq 30px ka gap dita hai */
+}
+
+
+/* 2.0 Main Contetn — Inner Nestd Gird
+   Wireframe Refernce: Main content block span kr rha hai heri row sy ly kr 
+   form row tak (outer gird ki rows 2–5). Internally yeah bhi aik 
+   4-column gird hai taky har child sectoin gird-column shorthand 
+   use kr saky full width span krny k leay.
+   Positioning method: gird-area shorthand (hero / hero / form / form).
+*/
+main.main-content {
+    /* Spans from "hero" gird-area start to "form" gird-area end */
+    grid-area: hero / hero / form / form;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+        "hero     hero     hero     hero"
+        "features features features features"
+        "stats    stats    stats    stats"
+        "form     form     form     form";
+    row-gap: 40px;
+}
+
+
+/* 3.0 Hedder
+   Wireframe Refernce: Top bar — "Logo" left side pr, nav links
+   (Home | Products | Research | Book Appointment) right side pr.
+   Wireframe pr yeah annotatd hai as: gird-column: 1/4 (yani k yeah full 4 columns span kr rha hai).
+   Positioning method: gird-column shorthand (1 / 5).
+*/
+.main-header {
+    grid-area: header;
+    grid-column: 1 / 5; /* Wirefrane: header row spans all 4 colums (1 → 5 line) */
+    background-color: #F9FAFB;
+    padding: 16px 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #9bb4b6;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-container {
+    width: 60px;
+    height: 60px;
+}
+
+.nano-logo {
+    max-width: 100%;
+    height: auto;
+    animation: floatingLogo 1s ease-in-out infinite;
+}
+
+.nav-list {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.nav-list a {
+    font-weight: 500;
+    transition: color 0.3s;
+    color: #576574;
+}
+
+.nav-list a:hover {
+    color: #4fa0a0;
+}
+
+.nav-cta {
+    background-color: #FEE000;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #004D40;
+}
+
+
+/* 3.1 Hero Sectoin
+   Wireframe Refernce: Header k neechy bari yellow band hai. Is mein left 
+   side pr hero text/tagline hai aur right side pr circular bot illustratoin hai. 
+   Bottom edge ki slantd dividing line (clip-path) wireframe mein nazar aa rahi 
+   hai jo hero aur featuers sections ko divide kr rahi hai. 
+   Wireframe ki right side pr annotated hai as: gird-row: 2/3, gird-area: hero. 
+   Positioning method: gird-area (hero) + gird-column shorthand (1 / 5). 
+*/
+.hero-section {
+    grid-area: hero;
+    grid-column: 1 / 5; /* Spans all 4 columns — wirefrane: hero row full width */
+    background-color: #FEE000;
+    color: #004D40;
+    padding: 96px 48px 192px 48px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+    /* Wireframe: diagonal slantd bottom edge separaitng hero from features */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
+
+.hero-text {
+    max-width: 60%;
+}
+
+.hero-tagline {
+    font-size: 50px;
+    font-weight: 200;
+    margin-bottom: 16px;
+    color: #004D40;
+}
+
+.hero-subtext {
+    font-size: 15px;
+    margin-bottom: 25px;
+    color: #576574;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #00E5FF;
+    color: #004D40;
+}
+
+.btn-primary:hover {
+    background-color: lightgreen;
+    transform: translateY(-2px);
+}
+
+/* Wireframe Refernce: Circular bot illustratoin on the right side of hero */
+.bot-illustration {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.223);
+    border-radius: 50%;
+    position: relative;
+}
+
+.nanobot {
+    width: 90px;
+    height: 90px;
+    background-color: #00E5FF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: floatNanobot 5s infinite;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.nanobot h6 {
+    margin: 0;
+    font-size: 8px;
+    font-weight: 500;
+    color: #004D40;
+}
+
+
+/* 3.2 Featuers Sectoin — Contanier
+   Wireframe Refernce: "Nano Banana Innovatoins" section. Yeah features row
+   mein hai outer gird k, aur full 4 colums span kr rha hai.
+   Annotatd on wirefrane: gird-column: 1/4, gird-row: 2/3, gird-area: features.
+   Positioning method: gird-area (features) + gird-column shorthand (1 / 5).
+*/
+.features-section {
+    grid-area: features;
+    grid-column: 1 / 5; /* Wirefrane: features row spans all 4 colums */
+    padding: 32px;
+    position: relative;
+}
+
+
+/* 3.3 Feature Gird — Nested Overlap Gird
+   Wireframe Refernce: Features section k andr wali inner gird. Wirefrane
+   dikha rha hai k Card 1 left side pr 3/4 space ly rha hai 2 rows mein,
+   jbky Card 2 aur 3 right side pr stack ho rhy hain.
+   Hatchd/diagonal shading batati hai k yeahan OVERLAP ZONE hai jahan
+   card 1 aur cards 2–3 same cells (col 3-4) share krty hain.
+
+   OVERLAPPING ITEMS — z-index documentatoin (Req 4.1 Item 8):
+     • .feature-card-large (z-index: 2) small cards pr overlap krta hai
+       kyun k yeah col 1/4 aur row 1/3 span kr rha hai.
+       Large card TOP pr hai (z-index: 2 > 1) taky content nazar aye.
+     • .feature-card-small (z-index: 1) cards large card k peechay hain
+       shared col-3 region mein, jis sy layered depth effect aata hai.
+*/
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal colums features k andr */
+    grid-template-rows: auto auto;
+    gap: 24px; /* Wireframe annotatoin: gap approx 20px */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: #F9FAFB;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    position: relative;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0, 229, 255, 0.1);
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: #004D40;
+}
+
+.feature-card p {
+    color: #576574;
+}
+
+
+/* 3.3a Feature Card Large (Card 1) — OVERLAPPING ITEM #1
+   Wireframe Refernce: Bari left card jisko "featureCard 1" kaha gya hai.
+   Wireframe left annotatoin: gird-column: 1/4, gird-row: 2/3, z-index: 2.
+   Yeah card columns 1–3 aur dono rows span kr rahi hai.
+   Shared zone (col-3) mein yeah small cards ko overlap krti hai.
+   z-index: 2 is card ko small cards k oper rakhta hai.
+*/
+.feature-card-large {
+    grid-column: 1 / 4; /* Wirefrane: col 1 sy 4 line tak (3 cols wide) */
+    grid-row: 1 / 3;    /* Wirefrane: dono feature rows span krta hai */
+    z-index: 2;          /* OVERLAP: sits ON TOP of small cards in col-3 */
+    background-color: #00E5FF;
+    color: #004D40;
+}
+
+.feature-card-large * {
+    color: #004D40;
+}
+
+
+/* 3.3b Feature Card Small — Top Right (Card 2) — OVERLAPPING ITEM #2
+   Wireframe Refernce: Top-right card labeled "featureCard 2".
+   Yeah card columns 3–5 aur row 1 mein hai.
+   Yeah col-3 share krti hai large card k sath — yeahi overlap zone hai.
+   z-index: 1 isko large card k PEECHAY rakhta hai col-3 area mein.
+*/
+.feature-card-small {
+    grid-column: 3 / 5; /* Wirefrane: right side, col 3 sy start */
+    z-index: 1;          /* OVERLAP: sits BEHIND large card in col-3 */
+    background-color: #FFFFFF;
+}
+
+/* Card 2: top-right positon — wireframe row 1 */
+.small-2 {
+    grid-row: 1; 
+}
+
+/* Card 3: bottom-right positon — wireframe row 2 */
+.small-3 {
+    grid-row: 2; 
+}
+
+
+/* 3.4 Stats Sectoin
+   Wireframe Refernce: 3 stat counters ki row features section k neechy.
+   "StatCounter 1 | 2 | 3" side-by-side show ho rhy hain.
+   Teeno boxes EQUAL WIDTH k hain aur edge-to-edge stretch krty hain.
+   Outer gird k sary 4 colums span krty hain.
+   Layout: Flexbox — har counter "flex:1" use krta hai taky barabar space milay.
+*/
+.stats-section {
+    grid-area: stats;
+    grid-column: 1 / 5;       /* Wirefrane: stats row spans all 4 colums */
+    padding: 32px 48px;       
+    display: flex;             
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.stat-counter {
+    flex: 1;                  /* Wirefrane: teeno boxes equal width */
+    background-color: #F9FAFB;
+    padding: 32px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #00E5FF;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #FEE000;
+    display: block;
+}
+
+.stat-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #004D40;
+    display: block;
+}
+
+
+/* 3.5 Form Sectoin
+   Wireframe Refernce: "Schedule Consultatoin" section main content k neechy.
+   Wirefrane dikhata hai k yeah FULL-WIDTH box hai jo page edges tak jata hai.
+   Wireframe left annotatoin: "Flex Box" — internal rows flexbox use krti hain.
+   Annotated: "Gird template areas" — outer placement gird-area sy hai.
+*/
+.form-section {
+    grid-area: form;
+    grid-column: 1 / 5;          /* Wirefrane: form row spans all 4 colums */
+    padding: 40px 48px;          
+    margin: 0 48px 64px 48px;    
+    background-color: #FDFEFA;
+    border-radius: 8px;
+    border: 1.5px solid #9bb4b6; /* Wirefrane: visible border outline */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.appointment-form {
+    display: grid;
+    gap: 24px;
+}
+
+/* Wirefrane: har row mein 2 fields flexbox sy side-by-side hain */
+.form-row {
+    display: flex; 
+    gap: 24px;
+    width: 100%;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15.2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #004D40;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14.4px;
+    border: 2px solid #E0E6ED;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    transition: 0.3s;
+}
+
+textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #00E5FF;
+    transform: scale(1.01);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+    outline: none;
+}
+
+input[type="tel"]:invalid {
+    border-color: #FF7675;
+}
+
+input[type="tel"]:valid {
+    border-color: #FEE000;
+}
+
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 8px;
+}
+
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.radio-option input, .checkbox-option input {
+    margin: 0;
+    width: 19.2px;
+    height: 19.2px;
+    accent-color: #00E5FF;
+}
+
+.radio-option label, .checkbox-option label {
+    font-weight: 500;
+    margin: 0;
+    color: #576574;
+}
+
+/* Wirefrane: action buttons (Book | Reset) right side pr align hain */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.btn-submit {
+    background-color: #00E5FF;
+    color: #004D40;
+}
+
+.btn-submit:hover {
+    background-color: #FEE000;
+}
+
+.btn-reset {
+    background-color: #FFFFFF;
+    border: 2px solid #E0E6ED;
+    color: #576574;
+}
+
+.btn-reset:hover {
+    background-color: #FFD2D2;
+    border-color: #FF7675;
+    color: #C0392B;
+}
+
+
+/* 3.6 Foter Sectoin
+   Wireframe Refernce: Bottom bar jis mein Contact, Footer aur Copyright hai.
+   Diagonal top edge (clip-path) nazar aa rahi hai jo form aur footer ko divide krti hai.
+   Outer gird k sary 4 colums span krti hai.
+*/
+.main-footer {
+    grid-area: footer;
+    grid-column: 1 / 5; 
+    background-color: #004D40;
+    color: #FFFFFF;
+    padding: 160px 48px 48px 48px;
+    /* Wirefrane: slantd top edge — hero ka mirror clip-path */
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+    position: relative;
+    z-index: 5;
+}
+
+/* Wireframe: footer 3 colums mein split hai — Contact, Center, Copyright */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content * {
+    color: #FFFFFF;
+}
+
+.footer-contact h4 {
+    margin-bottom: 8px;
+    color: #FEE000;
+}
+
+.footer-contact p {
+    font-size: 14.4px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-copyright p {
+    font-size: 14.4px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 32px;
+}
+
+
+/* 4.0 Animatoins aur Transitoins
+   Yeahan sary movemnt waly effects add kiye hain.
+*/
+@keyframes floatingLogo {
+    0%   { transform: translate(5px, 0px)  rotate(2deg);  }
+    50%  { transform: translate(0px, 10px) rotate(10deg); }
+    100% { transform: translate(0px, 0px)  rotate(2deg);  }
+}
+
+@keyframes floatNanobot {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) translateX(140px) rotate(-180deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg);
+    }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana Technologies | Revolutionary Medical Nanobots</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="images/logoo.png" alt="Nano Banana Technologies Logo" class="nano-logo">
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#contact" class="nav-cta">Book Appointment</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+
+            <section class="hero-section" id="home">
+                <div class="hero-text">
+                    <h1 class="hero-tagline">Microscopic Delivery, Massive Impact</h1>
+                    <p class="hero-subtext">Revolutionizing medicine with banana-based nanobots.</p>
+                    <a href="#products" class="btn btn-primary">Discover Our Products</a>
+                </div>
+                <div class="bot-illustration">
+                    <div class="nanobot">
+                        <h6>Hi I am nano bot. Adopt me ^_^</h6>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section" id="products">
+                <h2 class="section-title">Nano Banana Innovations</h2>
+                
+                <div class="feature-grid">
+                    <article class="feature-card feature-card-large">
+                        <div class="card-icon">🎯</div>
+                        <h3>Targeted Delivery</h3>
+                        <p>Precision guidance systems deliver medication directly to affected cells, minimizing side effects.</p>
+                    </article>
+
+                    <article class="feature-card feature-card-small small-2">
+                        <div class="card-icon">🌿</div>
+                        <h3>Organic Composition</h3>
+                        <p>100% biocompatible, non-toxic nano-structures.</p>
+                    </article>
+
+                    <article class="feature-card feature-card-small small-3">
+                        <div class="card-icon">⚡</div>
+                        <h3>Rapid Absorption</h3>
+                        <p>Immediate cellular uptaeke rates for faster healing.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <div class="stat-counter">
+                    <span class="stat-number">1M+</span>
+                    <span class="stat-label">Nanobots Deployed</span>
+                </div>
+                <div class="stat-counter">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Partner Labs</span>
+                </div>
+                <div class="stat-counter">
+                    <span class="stat-number">99.8%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </section>
+
+            <section class="form-section" id="contact">
+                <h2 class="section-title">Schedule a Conslutation</h2>
+                
+                <form action="/submit-appointment" method="POST" class="appointment-form" autocomplete="on">
+                    
+                    <div class="form-row name-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name:</label>
+                            <input type="text" id="first-name" name="first-name" required minlength="2" maxlength="50" autocomplete="given-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name:</label>
+                            <input type="text" id="last-name" name="last-name" required minlength="2" maxlength="50" autocomplete="family-name">
+                        </div>
+                    </div>
+
+                    <div class="form-row contact-row">
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <div class="form-row datetime-row">
+                        <div class="form-group">
+                            <label for="appointment-date">Appointment Date:</label>
+                            <input type="date" id="appointment-date" name="appointment-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-time">Appointment Time:</label>
+                            <input type="time" id="appointment-time" name="appointment-time" required min="09:00" max="17:00">
+                        </div>
+                    </div>
+
+                    <div class="form-group dropdown-group">
+                        <label for="department">Select Department:</label>
+                        <select id="department" name="department" required>
+                            <option value="" selected>Select a department...</option>
+                            <option value="research">Nano-Research & Development</option>
+                            <option value="clinical">Clinical Trials</option>
+                            <option value="delivery">Systems Delivery</option>
+                            <option value="bio-integration">Bio-Integration Services</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group radio-group-container">
+                        <label>Consultation Type:</label>
+                        <div class="radio-options">
+                            <div class="radio-option">
+                                <input type="radio" id="initial" name="consultation-type" value="initial" required>
+                                <label for="initial">Initial</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="follow-up" name="consultation-type" value="follow-up">
+                                <label for="follow-up">Follow-up</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="emergency" name="consultation-type" value="emergency">
+                                <label for="emergency">Emergency</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group textarea-group">
+                        <label for="symptoms">Symptoms / Notes (Optional):</label>
+                        <textarea id="symptoms" name="symptoms" maxlength="500" placeholder="Brief description of symptoms..."></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group-container">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="newsletter" name="newsletter" value="opt-in">
+                            <label for="newsletter">Subscribe to Nano Banana Newsletter</label>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-submit">Book Appointment</button>
+                        <button type="reset" class="btn btn-reset">Reset</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h4>Nano Banana Technologies HQ</h4>
+                    <p>Islamabad Campus, FAST NUCES</p>
+                    <p>Web Programming Course</p>
+                    <p>Instructor: Arsalan Khan</p>
+                    <p>By: Muhammad Haris Khan (23I-5558)</p>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2026 Nano Banana Technologies. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div> 
+</body>
+</html>
